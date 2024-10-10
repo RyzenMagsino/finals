@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Responsive Navbar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/inventory.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav>
+    <!-- Checkbox for toggling menu -->
+    <input type="checkbox" id="check">
+
+    <!-- Menu icon -->
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <!-- Site logo -->
+    <label class="logo">Five Star</label>
+    <img src="" alt="">
+
+    <!-- Navigation links -->
+    <ul>
+      <li><a href="POS.html">POS</a></li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Sales.html">Sales</a></li>
+      <li><a class="active" href="invento.html">Inventory</a></li>
+      <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+      
+    </ul>
+  </nav>
+  
+  <!-- Section for image -->
+  <section>
+
+    <div class="dreicontainer">
+      <div class="container">
+        <h1>Inventory Management System</h1>
+
+        <form id="inventory-form">
+          <input type="text" id="item-name" placeholder="ID" required>
+          <input type="text" id="item-name" placeholder="Date" required>
+          <input type="text" id="item-name" placeholder="Product-Name" required>
+          <input type="number" id="item-quantity" placeholder="Quantity" required>
+         
+          <a href="Addstock.html"><button type="button">Add Item</button></a>
+      </form>
+      <table>
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Product-Name</th>
+                  <th>Quantity</th>
+                  <th>Action</th>
+                  
+              </tr>
+          </thead>
+          <tbody id="inventory-table-body">
+              <!-- Inventory items will be added here -->
+          </tbody>
+      </table>
+  </div>
+
+    </div>
+    
+  <script src="inventory.js"></script>
+  </section>
+</body>
+
+</html>
