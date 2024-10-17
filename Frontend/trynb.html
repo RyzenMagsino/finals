@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
+    <link rel="stylesheet" href="trys.css">
+</head>
+<body>
+    <div class="container">
+        <div class="pos-container">
+            <header class="header">
+                <h1>POS</h1>
+                <nav>
+                    <a href="#">DASHBOARD</a>
+                    <a href="#">POS</a>
+                    <a href="#">SALES</a>
+                    <a href="#">INVENTORY</a>
+                    <button class="logout">Log Out</button>
+                </nav>
+            </header>
+
+            <div class="pos-content">
+                <div class="order-details">
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>Qty</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Classic Chicken</td>
+                                <td>46</td>
+                                <td>230</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Spicy Chicken</td>
+                                <td>47</td>
+                                <td>141</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Roasted Chicken</td>
+                                <td>48</td>
+                                <td>96</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total Price</td>
+                                <td>467.00</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Payment</td>
+                                <td>500.00</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Change</td>
+                                <td>33.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="item-selection">
+                    <div class="item">
+                        <button class="btn">Classic Chicken</button>
+                        <button class="quantity-btn">+</button>
+                        <span>5</span>
+                        <button class="quantity-btn">-</button>
+                    </div>
+                    <div class="item">
+                        <button class="btn">Spicy Chicken</button>
+                        <button class="quantity-btn">+</button>
+                        <span>3</span>
+                        <button class="quantity-btn">-</button>
+                    </div>
+                    <div class="item">
+                        <button class="btn">Roasted Chicken</button>
+                        <button class="quantity-btn">+</button>
+                        <span>2</span>
+                        <button class="quantity-btn">-</button>
+                    </div>
+                    <div class="payment">
+                        <span>Payment: 500.00</span>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn">DONE</button>
+                        <button class="action-btn">PAY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

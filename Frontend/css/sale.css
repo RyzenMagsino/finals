@@ -124,3 +124,67 @@ section {
   background-size: cover;
   height: calc(100vh - 80px);
 }
+
+/*eto sa sales*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.table-container {
+  width: 80vw;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sales-table th, .sales-table td {
+  padding: 12px;
+  text-align: left;
+  
+}
+
+td{
+  height: 9vh;
+}
+
+.sales-table thead {
+  background-color:#a30000;
+  color: white;
+}
+
+.sales-table th {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.sales-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.sales-table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.product-variant {
+  font-style: italic;
+  color: #555;
+  background-color: #f0f0f0;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: red;
+}

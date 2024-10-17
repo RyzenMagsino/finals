@@ -8,11 +8,11 @@
 body {
     font-family: "Montserrat", sans-serif;
     height: 100vh;
-    background: url('a.jpg') no-repeat;
     background-size: cover;
     justify-content: center;
     display: flex;
     align-items: center;
+    background-image: url('../assets/images/a.jpg');
 
 }
 
@@ -40,12 +40,15 @@ body {
 
 .login-box {
     background-color: #a30000;
-    border-radius: 10px;
-    padding: 40px 20px;
-    width: 300px;
+    border-radius: 20px;
+    padding: 90px 50px;
+    width: 500px;
     text-align: center;
     color: #ffd700;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffd700;
+    box-shadow: 0 10px 5px #ffd700;
+    
 }
 
 .login-box h2 {
@@ -57,6 +60,8 @@ body {
 
 .input-box {
     margin-bottom: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
 }
 
 .input-box input {
