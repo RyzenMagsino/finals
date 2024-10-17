@@ -8,12 +8,11 @@
 body {
     font-family: "Montserrat", sans-serif;
     height: 100vh;
-    background: url('a.jpg') no-repeat;
     background-size: cover;
     justify-content: center;
     display: flex;
     align-items: center;
-    background-color: #920000;
+    background-image: url('../assets/images/a.jpg');
 
 }
 
@@ -42,13 +41,14 @@ body {
 .login-box {
     background-color: #a30000;
     border-radius: 20px;
-    padding: 100px 60px;
+    padding: 90px 50px;
     width: 500px;
     text-align: center;
     color: #ffd700;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid black;
-    box-shadow: 0 2px 5px #000000;
+    border: 1px solid #ffd700;
+    box-shadow: 0 10px 5px #ffd700;
+    
 }
 
 .login-box h2 {

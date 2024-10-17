@@ -186,7 +186,8 @@ section {
 }
 
 .order-table {
-  width: 100%;
+  width: 70vw;
+  height: 80vh;
   border-collapse: collapse;
 }
 
@@ -212,19 +213,6 @@ section {
   gap: 20px;
 }
 
-.item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn {
-  background-color: #fdda00;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
 
 .quantity-btn {
   padding: 10px;
