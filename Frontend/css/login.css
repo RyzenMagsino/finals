@@ -13,6 +13,7 @@ body {
     justify-content: center;
     display: flex;
     align-items: center;
+    background-color: #920000;
 
 }
 
@@ -40,12 +41,14 @@ body {
 
 .login-box {
     background-color: #a30000;
-    border-radius: 10px;
-    padding: 40px 20px;
-    width: 300px;
+    border-radius: 20px;
+    padding: 100px 60px;
+    width: 500px;
     text-align: center;
     color: #ffd700;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    box-shadow: 0 2px 5px #000000;
 }
 
 .login-box h2 {
@@ -57,6 +60,8 @@ body {
 
 .input-box {
     margin-bottom: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
 }
 
 .input-box input {
