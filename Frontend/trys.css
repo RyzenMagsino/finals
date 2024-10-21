@@ -1,143 +1,97 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* General Styles */
 body {
-    background-color: #f7f7f7;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-}
-
-.pos-container {
-    width: 100%;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fdda00;
-    padding: 10px;
-    border-bottom: 2px solid red;
-    border-radius: 8px 8px 0 0;
-}
-
-.header h1 {
     margin: 0;
-    font-size: 24px;
+    background-color: #f0f0f0;
 }
 
-.header nav {
+.settings-container {
     display: flex;
-    gap: 20px;
+    height: 70vh;
+    width: 90%;
+    max-width: 1000px;
+    /* Optional: limit maximum width */
+    margin-bottom: 50px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
 }
 
-.header nav a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-}
-
-.logout {
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.pos-content {
-    display: flex;
-    justify-content: space-between;
+/* Sidebar Styles */
+.sidebar {
+    background-color: #b22222;
+    width: 30%;
     padding: 20px;
+    color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
-.order-details {
-    flex: 2;
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
 }
 
-.order-table {
-    width: 100%;
-    border-collapse: collapse;
+.back-arrow {
+    font-size: 20px;
+    margin-right: 10px;
 }
 
-.order-table th, .order-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+.sidebar ul {
+    list-style: none;
+    padding: 0;
 }
 
-.order-table thead {
-    background-color: #fdda00;
-    color: black;
+.sidebar li {
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
-.order-table tfoot {
+.sidebar li.active {
     font-weight: bold;
+    color: yellow;
 }
 
-.item-selection {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.icon {
+    margin-right: 10px;
 }
 
-.item {
+/* Main Content Styles */
+.main-content {
+    background-color: #e0e0e0;
+    width: 70%;
+    padding: 40px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.password-section {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.btn {
-    background-color: #fdda00;
-    border: none;
-    padding: 10px 20px;
+label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
     font-size: 16px;
-    cursor: pointer;
+    background-color: white;
 }
 
-.quantity-btn {
-    padding: 10px;
-    background-color: #ddd;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.payment {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.action-btn {
-    background-color: #fdda00;
-    padding: 10px 20px;
-    border: none;
+.change-password-btn {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 16px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
-
