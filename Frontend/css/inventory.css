@@ -40,7 +40,7 @@ nav ul li {
   margin: 0 5px;
 }
 
-nav ul li a {
+nav ul li #tag {
   color: white;
   font-size: 17px;
   padding: 7px 13px;
@@ -48,8 +48,8 @@ nav ul li a {
   text-transform: uppercase;
 }
 
-a.active,
-a:hover {
+#tag.active,
+#tag:hover {
   background: white;
   transition: .5s;
   color: black;
@@ -157,9 +157,45 @@ a:hover {
     left: 0;
   }
 }
+/* Dashboard Styling */
+.dashboard {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;    /* Center vertically */
+  flex-wrap: wrap;        /* Allow wrapping if needed */
+  gap: 20px;              /* Space between cards */
+  margin: 30px auto;      /* Top and bottom margin */
+  max-width: 1200px;      /* Prevent overly wide layout */
+}
 
-section {
-  background: url("bg.jpg") no-repeat;
-  background-size: cover;
-  height: calc(100vh - 70px);
+.card {
+  width: 180px; /* Card width */
+  height: 150px; /* Card height */
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.card h3 {
+  background-color: #e53935;
+  color: white;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
 }
