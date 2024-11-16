@@ -163,17 +163,17 @@ nav ul li #tag {
   justify-content: center; /* Center horizontally */
   align-items: center;    /* Center vertically */
   flex-wrap: wrap;        /* Allow wrapping if needed */
-  gap: 20px;              /* Space between cards */
+  gap: 100px;              /* Space between cards */
   margin: 30px auto;      /* Top and bottom margin */
   max-width: 1200px;      /* Prevent overly wide layout */
 }
 
 .card {
-  width: 180px; /* Card width */
+  width: 280px; /* Card width */
   height: 150px; /* Card height */
   text-align: center;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
@@ -184,7 +184,7 @@ nav ul li #tag {
 }
 
 .card h3 {
-  background-color: #e53935;
+  background-color:#a30000;
   color: white;
   margin: 0;
   padding: 10px 0;
@@ -199,3 +199,62 @@ nav ul li #tag {
   color: #333;
   margin: 20px 0;
 }
+
+
+.table-container {
+  width: 80vw;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 50px solid;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sales-table th,
+.sales-table td {
+  padding: 12px;
+  text-align: left;
+
+}
+
+td {
+  height: 9vh;
+}
+
+.sales-table thead {
+  background-color: #a30000;
+  color: white;
+}
+
+.sales-table th {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.sales-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.sales-table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.product-variant {
+  font-style: italic;
+  color: #555;
+  background-color: #f0f0f0;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: red;
+}
+
+.dates {}
