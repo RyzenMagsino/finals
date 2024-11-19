@@ -100,186 +100,84 @@ nav ul li #tag {
   background-color: #e60000;
 }
 
-/* Responsive Media Queries */
-@media (max-width: 1050px) {
-  label.logo {
-    padding-left: 30px;
-  }
+/*dropdown*/
 
-  nav ul li a {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 890px) {
-  .checkbtn {
-    display: block;
-
-  }
-
-  label.logo {
-    font-size: 22px;
-  }
-
-  nav ul {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #2c3e50;
-    top: 70px;
-    left: -100%;
-    text-align: center;
-    transition: all .5s;
-    display: block;
-  }
-
-  nav ul li {
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
-  }
-
-  nav ul li a {
-    font-size: 20px;
-  }
-
-  .profile-container {
-    justify-content: center;
-  }
-
-  a:hover,
-  a.active {
-    background: none;
-    color: #0082e6;
-  }
-
-  #check:checked~ul {
-    left: 0;
-  }
-}
-
-section {
-  background: url("bg.jpg") no-repeat;
-  background-size: cover;
-  height: calc(100vh - 70px);
-}
-
-/* sa pos to*/
-
+/*new*/
 .container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px;
+    width: 800px;
+    margin: auto;
+    padding: auto;
 }
 
-.pos-container {
-  width: 100%;
-  margin: 0 auto;
-  border: 1px solid #ddd;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+.order-summary {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fdda00;
-  padding: 10px;
-  border-bottom: 2px solid red;
-  border-radius: 8px 8px 0 0;
+.order-summary table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 24px;
+.order-summary th, .order-summary td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
 }
 
-.header nav {
-  display: flex;
-  gap: 20px;
+.totals {
+    margin-top: 10px;
 }
 
-.header nav a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
+.totals p {
+    margin: 5px 0;
 }
 
-.logout {
-  background-color: red;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
+.controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.pos-content {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+.control-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.order-details {
-  flex: 2;
+button {
+    background-color: #4CAF50;
+    color: black;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
-.order-table {
-  width: 70vw;
-  height: 80vh;
-  border-collapse: collapse;
+button:hover {
+    background-color: #45a049;
 }
 
-.order-table th,
-.order-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
+.adjust-btn {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
 }
 
-.order-table thead {
-  background-color: #fdda00;
-  color: black;
+.adjust-btn:hover {
+    background-color: #e0e0e0;
 }
-
-.order-table tfoot {
-  font-weight: bold;
-}
-
-.item-selection {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-
-.quantity-btn {
-  padding: 10px;
-  background-color: #ddd;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.payment {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.action-btn {
-  background-color: #fdda00;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-

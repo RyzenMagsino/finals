@@ -1,96 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Responsive Navbar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/pos.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-  <nav>
-    <!-- Checkbox for toggling menu -->
-    <input type="checkbox" id="check">
-
-    <!-- Menu icon -->
-    <label for="check" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-
-    <!-- Site logo -->
-    <label class="logo">Five Star</label>
-    <img src="" alt="">
-    <!-- Navigation links -->
-    <ul>
-        <li><a id="tag" class="active" href="POS.html">POS</a></li>
-        <li><a id="tag" href="Dashboard.html">Dashboard</a></li>
-        <li><a id="tag" href="Sales.html">Sales</a></li>
-        <li><a id="tag" href="invento.html">Inventory</a></li>
-        <li class="profile-container">
-            <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
-            <a href="login.html">
-                <button class="logout-button">Log Out</button>
-            </a>
-        </li>
-    </ul>
-  </nav>
-         
-         
-  <div class="pos-content">
-    <div class="order-details">
-        <table class="order-table">
-            <thead>
-                <tr>
-                    <th>Qty</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>5</td>
-                    <td>Classic Chicken</td>
-                    <td>46</td>
-                    <td>230</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Spicy Chicken</td>
-                    <td>47</td>
-                    <td>141</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Roasted Chicken</td>
-                    <td>48</td>
-                    <td>96</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">Total Price</td>
-                    <td>467.00</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Payment</td>
-                    <td>500.00</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Change</td>
-                    <td>33.00</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
-</div>
-</div>
+  <html lang="en" dir="ltr">
   
-  <!-- Section for image -->
-  <section></section>
-</body>
-
-</html>
+      <head>
+        <meta charset="utf-8">
+        <title>Responsive Navbar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/pos.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      </head>
+    
+      <body>  
+        <nav>
+          <!-- Checkbox for toggling menu -->
+          <input type="checkbox" id="check">
+      
+          <!-- Menu icon -->
+          <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+          </label>
+      
+          <!-- Site logo -->
+          <label class="logo">Five Star</label>
+          <img src="" alt="">
+          <!-- Navigation links -->
+          <ul>
+            <li><a id="tag" class="active" href="POS.html">POS</a></li>
+            <li><a id="tag" href="Dashboard.html">Dashboard</a></li>
+            <li><a id="tag" href="Sales.html">Sales</a></li>
+            <li><a id="tag" href="invento.html">Inventory</a></li>
+            <li class="profile-container">
+              <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+              <a href="login.html">
+                <button class="logout-button">Log Out</button>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      
+   
+       <div class="container">
+          <div class="order-summary">
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Qty</th>
+                          <th>Description</th>
+                          <th>Price</th>
+                          <th>Total</th>
+                      </tr>
+                  </thead>
+                  <tbody id="order-details">
+                      <tr>
+                          <td>5</td>
+                          <td>Classic Chicken</td>
+                          <td>46</td>
+                          <td id="classic-total">230</td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>Spicy Chicken</td>
+                          <td>47</td>
+                          <td id="spicy-total">141</td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td>Roasted Chicken</td>
+                          <td>48</td>
+                          <td id="roasted-total">96</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="totals">
+                  <p>Total price: <span id="total-price">467</span>.00</p>
+                  <p>Payment: <input type="number" id="payment" value="500.00"></p>
+                  <p>Change: <span id="change">33.00</span></p>
+              </div>
+          </div>
+          <div class="controls">
+              <div class="control-item">
+                  <span>Classic Chicken</span>
+                  <button class="adjust-btn" data-type="decrease" data-item="classic">-</button>
+                  <button class="adjust-btn" data-type="increase" data-item="classic">+</button>
+              </div>
+              <div class="control-item">
+                  <span>Spicy Chicken</span>
+                  <button class="adjust-btn" data-type="decrease" data-item="spicy">-</button>
+                  <button class="adjust-btn" data-type="increase" data-item="spicy">+</button>
+              </div>
+              <div class="control-item">
+                  <span>Roasted Chicken</span>
+                  <button class="adjust-btn" data-type="decrease" data-item="roasted">-</button>
+                  <button class="adjust-btn" data-type="increase" data-item="roasted">+</button>
+              </div>
+              <button id="pay-button" onclick="calculateChange()">PAY</button>
+          </div>
+      </div>
+        <script src ="../JS/pos.js"></script>
+      <!-- Section for image -->
+      <section></section>
+    </body>
+  </html>
