@@ -108,24 +108,6 @@ nav ul li #tag {
   background-color: #e60000;
 }
 /* sa pic to na logo*/
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-img {
-  width: 50px; /* Set the desired size for your logo */
-  height: 50px; /* Make sure the height is the same as width for a perfect circle */
-  border-radius: 50%; /* This makes the image circular */
- 
-  object-fit: cover; /* Ensures the image fits within the circle */
-}
-
-.logo {
-  font-size: 24px; /* Adjust font size for "Five Star" */
-  font-weight: bold;
-}
-
 
 .v1
 {
@@ -232,8 +214,8 @@ td {
   text-align: center;
   color: #fff;
   border-radius: 8px;
-  width: 500px;
-  height: 300px;
+  width: 300px;
+  height: 150px;
 }
 .modal-content p {
   margin: 20px 0;
@@ -253,8 +235,23 @@ td {
 .btn-no {
   background: #ccc;
   color: #333;
-  
+}
 
+.add-product{
+  padding: 10px 25px;
+  color: white;
+  background-color: #e40000;
+  border: none;
+  border-radius: 20px;
+  position: absolute;
+  top: 60px;
+  right: 80px;
+}
+
+.button-div{
+  display: block;
+  position: relative;
+  margin-bottom: 80px;
 }
 .btn-yes {
   background: #fff;
@@ -269,4 +266,146 @@ td {
   font-size: 1.5em;
   color: #fff;
   cursor: pointer;
+}
+
+/*para sa add*/
+/* Modal Overlay */
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center; /* Horizontally center the modal */
+  align-items: center; /* Vertically center the modal */
+  z-index: 1;
+  overflow: auto; /* Allow scrolling if content is taller */
+}
+
+/* Modal Content */
+.modal-contents {
+  position: absolute;
+  top: 50%; /* Move it down 50% from the top */
+  left: 50%; /* Move it right 50% from the left */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px; /* Set max-width for better appearance */
+  padding: 20px;
+  box-sizing: border-box; /* Ensures padding doesn't increase width */
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.modal-header h5 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.modal-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+
+/* Form Group Style */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Modal Footer */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.modal-footer .btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-footer .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #ccc;
+  color: black;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #aaa;
+}
+
+
+.date{
+  background-color: #e40000;
+  width: 125px;
+  padding: 10px;
+  color: white;
+  font-weight: bold; 
+  position: absolute;
+  top: 127px;
+  right: 220px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

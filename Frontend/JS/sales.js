@@ -1,43 +1,64 @@
-// Get all delete buttons, modal elements and buttons
-const deleteBtns = document.querySelectorAll(".delete-btn");
-const modal = document.getElementById("deleteModal");
-const closeBtn = document.querySelector(".close-btn");
-const yesBtn = document.getElementById("yes-btn");
-const noBtn = document.getElementById("no-btn");
+let rowToDelete; // Only one declaration of this variable
 
-// Variable to store the row to be deleted
-let rowToDelete = null;
+// Delete row functionality
+function showModal(element) {
+  rowToDelete = element.closest('tr'); // Store the row to delete
+  document.getElementById('deleteModal').style.display = 'flex';
+}
 
-// Event listener for all delete buttons
-deleteBtns.forEach(btn => {
-    btn.addEventListener("click", function () {
-        rowToDelete = this.closest('tr');  // Get the parent row of the delete button
-        modal.style.display = "block";  // Show modal
-    });
-});
+function hideModal() {
+  document.getElementById('deleteModal').style.display = 'none';
+}
 
-// Close the modal when "X" is clicked
-closeBtn.addEventListener("click", function () {
-    modal.style.display = "none";
-});
+function confirmDelete() {
+  if (rowToDelete) {
+    rowToDelete.remove(); // Delete the row from the table
+    rowToDelete = null; // Clear the reference
+  }
+  hideModal();
+}
 
-// If "Yes" is clicked, delete the row
-yesBtn.addEventListener("click", function () {
-    if (rowToDelete) {
-        rowToDelete.remove();  // Remove the selected row from the table
-        rowToDelete = null;  // Clear the reference
-    }
-    modal.style.display = "none";  // Hide the modal
-});
+// Reference elements for Add Product Modal
+const addProductModal = document.getElementById('addProductModal');
+const addProductForm = document.getElementById('addProductForm');
+const tableBody = document.querySelector('table tbody');
 
-// If "No" is clicked, just close the modal
-noBtn.addEventListener("click", function () {
-    modal.style.display = "none";
-});
+// Open and close modal
+function openAddProductModal() {
+  addProductModal.style.display = 'block';
+}
 
-// Close the modal if clicked outside of the modal content
-window.addEventListener("click", function (event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
+function closeAddProductModal() {
+  addProductModal.style.display = 'none';
+  addProductForm.reset(); // Reset the form fields
+}
+
+// Handle Add Product form submission
+addProductForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // Get form data
+  const productName = document.getElementById('productName').value;
+  const productId = document.getElementById('productId').value;
+  const category = document.getElementById('category').value;
+  const quantity = document.getElementById('quantity').value;
+
+  // Get current date
+  const currentDate = new Date().toLocaleDateString();
+
+  // Create new table row
+  const newRow = document.createElement('tr');
+  newRow.innerHTML = `
+    <td>${productId}</td>
+    <td>${currentDate}</td>
+    <td>${productName} (${category})</td>
+    <td>${quantity}</td>
+    <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
+  `;
+
+  // Append the new row to the table
+  tableBody.appendChild(newRow);
+
+  // Close the modal and reset the form
+  closeAddProductModal();
 });
