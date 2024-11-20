@@ -19,12 +19,12 @@ nav {
   width: 100%;
 }
 
-label.logo {
+ .logo {
   color: white;
   font-size: 25px;
   line-height: 70px;
-  padding: 0 100px;
   font-weight: bold;
+  margin-left: 60px;
 }
 
 nav ul {
@@ -98,6 +98,14 @@ nav ul li #tag {
 /* Hover effect for logout button */
 .logout-button:hover {
   background-color: #e60000;
+}
+
+.image1{
+  border-radius: 50%;
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 5px;
 }
 
 

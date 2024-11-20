@@ -1,0 +1,144 @@
+/* General reset and styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar container */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    position: relative; /* To ensure the dropdown can be layered correctly */
+  }
+  
+  /* Logo styling */
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-img {
+    width: 40px; /* Logo size */
+    height: 40px;
+    border-radius: 50%; /* Circular logo */
+    margin-right: 10px;
+  }
+  
+  .logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Menu icon for mobile */
+  .checkbtn {
+    display: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Navigation links */
+  ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul li {
+    margin: 0 15px;
+  }
+  
+  ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  ul li a.active {
+    font-weight: bold;
+  }
+  
+  ul li .logout-button {
+    background-color: #f44336; /* Red background for logout */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  ul li .logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }
+  
+  /* Profile container */
+  .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .checkbtn {
+      display: block; /* Show menu icon on smaller screens */
+    }
+  
+    ul {
+      display: none; /* Hide navigation links by default */
+      width: 100%;
+      text-align: center;
+      background-color: #333;
+      position: absolute;
+      top: 60px; /* Position below the navbar */
+      left: 0;
+      padding: 20px 0;
+    }
+  
+    ul li {
+      margin: 10px 0; /* Space out the links vertically */
+    }
+  
+    #check:checked + .checkbtn + ul {
+      display: block; /* Show menu when checkbox is checked */
+    }
+  
+    /* Ensure logout button stays at the bottom of the menu */
+    ul li.profile-container {
+      margin-top: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .logo-img {
+      width: 35px; /* Smaller logo on very small screens */
+      height: 35px;
+    }
+  
+    .logo {
+      font-size: 20px; /* Smaller logo text */
+    }
+  
+    ul li a {
+      font-size: 14px; /* Smaller font size for links */
+      padding: 8px; /* Adjust padding for smaller screens */
+    }
+  
+    .logout-button {
+      font-size: 12px; /* Smaller font size for logout button */
+      padding: 8px 16px; /* Adjust button size */
+    }
+  }
+  

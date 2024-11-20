@@ -19,13 +19,21 @@ nav {
   width: 100%;
 }
 
-label.logo {
+.image1{
+  border-radius: 50%;
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+ .logo {
   color: white;
   font-size: 25px;
   line-height: 70px;
-  padding: 0 100px;
   font-weight: bold;
-}
+  margin-left: 60px;
+}	
 
 nav ul {
   float: right;
@@ -98,6 +106,24 @@ nav ul li #tag {
 /* Hover effect for logout button */
 .logout-button:hover {
   background-color: #e60000;
+}
+/* sa pic to na logo*/
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 50px; /* Set the desired size for your logo */
+  height: 50px; /* Make sure the height is the same as width for a perfect circle */
+  border-radius: 50%; /* This makes the image circular */
+ 
+  object-fit: cover; /* Ensures the image fits within the circle */
+}
+
+.logo {
+  font-size: 24px; /* Adjust font size for "Five Star" */
+  font-weight: bold;
 }
 
 
