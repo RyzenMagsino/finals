@@ -29,72 +29,66 @@
             <li><a id="tag" href="Sales.html">Sales</a></li>
             <li><a id="tag" href="invento.html">Inventory</a></li>
             <li class="profile-container">
-              <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+              
+              <a href="../html/admin.html">
+                <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+              </a>
               <a href="login.html">
                 <button class="logout-button">Log Out</button>
               </a>
             </li>
           </ul>
         </nav>
+          <!-- Product Dropdown and Quantity Buttons -->
+    <div class="product-section">
+      <label for="product-dropdown">Select Product:</label>
+      <select id="product-dropdown">
+        <option value="0">Classic Chicken - ₱46</option>
+        <option value="1">Spicy Chicken - ₱47</option>
+        <option value="2">Roasted Chicken - ₱48</option>
+      </select>
+      <button onclick="addQuantity()">+</button>
+      <button onclick="removeQuantity()">-</button>
+    </div>
+
+    <!-- Table for Order Details -->
+    <table class="pos-table">
+      <thead>
+        <tr>
+          <th>Qty</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="product-list">
+        <!-- Dynamic Rows -->
+      </tbody>
+    </table>
+
+    <!-- Summary Table -->
+    <table class="summary-table">
+      <tr>
+        <td>Total Price:</td>
+        <td>₱<span id="total-price">0.00</span></td>
+      </tr>
+      <tr>
+        <td>Payment:</td>
+        <td>
+          <input type="number" id="payment" oninput="calculateChange()" placeholder="Enter amount">
+        </td>
+      </tr>
+      <tr>
+        <td>Change:</td>
+        <td>₱<span id="change">0.00</span></td>
+      </tr>
+    </table>
+
+    <button class="pay-btn" onclick="pay()">PAY</button>
+  </div>
       
    
-       <div class="container">
-          <div class="order-summary">
-              <table>
-                  <thead>
-                      <tr>
-                          <th>Qty</th>
-                          <th>Description</th>
-                          <th>Price</th>
-                          <th>Total</th>
-                      </tr>
-                  </thead>
-                  <tbody id="order-details">
-                      <tr>
-                          <td>5</td>
-                          <td>Classic Chicken</td>
-                          <td>46</td>
-                          <td id="classic-total">230</td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Spicy Chicken</td>
-                          <td>47</td>
-                          <td id="spicy-total">141</td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Roasted Chicken</td>
-                          <td>48</td>
-                          <td id="roasted-total">96</td>
-                      </tr>
-                  </tbody>
-              </table>
-              <div class="totals">
-                  <p>Total price: <span id="total-price">467</span>.00</p>
-                  <p>Payment: <input type="number" id="payment" value="500.00"></p>
-                  <p>Change: <span id="change">33.00</span></p>
-              </div>
-          </div>
-          <div class="controls">
-              <div class="control-item">
-                  <span>Classic Chicken</span>
-                  <button class="adjust-btn" data-type="decrease" data-item="classic">-</button>
-                  <button class="adjust-btn" data-type="increase" data-item="classic">+</button>
-              </div>
-              <div class="control-item">
-                  <span>Spicy Chicken</span>
-                  <button class="adjust-btn" data-type="decrease" data-item="spicy">-</button>
-                  <button class="adjust-btn" data-type="increase" data-item="spicy">+</button>
-              </div>
-              <div class="control-item">
-                  <span>Roasted Chicken</span>
-                  <button class="adjust-btn" data-type="decrease" data-item="roasted">-</button>
-                  <button class="adjust-btn" data-type="increase" data-item="roasted">+</button>
-              </div>
-              <button id="pay-button" onclick="calculateChange()">PAY</button>
-          </div>
-      </div>
+      
         <script src ="../JS/pos.js"></script>
       <!-- Section for image -->
       <section></section>

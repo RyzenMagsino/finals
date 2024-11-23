@@ -30,7 +30,10 @@
       <li><a id="tag" href="Sales.html">Sales</a></li>
       <li><a id="tag" class="active"href="invento.html">Inventory</a></li>
       <li class="profile-container">
-          <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+          
+         <a href="../html/admin.html">
+            <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+          </a>
           <a href="login.html"><button class="logout-button">Log Out</button></a>
       </li>
     </ul>
@@ -49,6 +52,12 @@
           <p id="roasted-total">50</p>
         </div>
       </div>
+      <th scope="col" class="dates mb-2">
+        <input type="date" class="date form-control" id="date" placeholder="Select Date" required>
+    </th>
+       <div class="button-div">
+        <button class="btn btn-secondary add-product" onclick="openAddProductModal()">Add Product</button>
+       </div>
            
       <div class="table-container">
         <table class="sales-table">
@@ -85,10 +94,47 @@
                   <td><button class="delete-btn">🗑️</button></td>
               </tr>
             </table> 
+             <!-- Add Product Modal -->
+       <div class="modal" id="addProductModal" style="display: none;">
+        <div class="modal-contents">
+          
+          <div class="modal-body">
+            <form id="addProductForm">
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" class="form-control" placeholder="Enter product name" required>
+              </div>
+              <div class="form-group">
+                <label for="productId">Product ID</label>
+                <input type="text" id="productId" class="form-control" placeholder="Enter product ID" required>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="form-select" required>
+                  <option value="">Select a category</option>
+                  <option value="Classic">Classic</option>
+                  <option value="Spicy">Spicy</option>
+                  <option value="Roasted">Roasted</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" class="form-control" min="1" placeholder="Enter quantity" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAddProductModal()">Close</button>
+                <button type="submit" class="btn btn-primary">Save Item</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
              
   <!-- Section for image -->
   <section></section>
-  <script src="script.js"></script>
+  <script src="../JS/inventory.js"></script>
   
 </body>
 

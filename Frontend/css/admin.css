@@ -104,13 +104,16 @@ nav ul li #tag {
 /* sa settings */
 .settings-container {
     display: flex;
-    height: 100vh;
+    height: 90vh;
     padding: 20px;
     box-sizing: border-box;
-}
+    
+    
+  }
+
 
 .settings-menu {
-    background-color: red;
+    background-color:#a30000;
     color: white;
     padding: 20px;
     width: 250px;
@@ -139,7 +142,7 @@ nav ul li #tag {
 
 .settings-content button {
     margin-top: 10px;
-    background-color: red;
+    background-color: #a30000;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -149,23 +152,23 @@ nav ul li #tag {
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+  display: none;           /* By default, hide the modal */
+  position: fixed;         /* Fix the modal on the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+  z-index: 1000;           /* Ensure the modal is on top */
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;      /* Position relative for the close button */
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  margin: 10% auto;         /* Center the modal on the screen */
+  border-radius: 10px;
 }
 
 .modal-content h3 {
@@ -191,4 +194,17 @@ nav ul li #tag {
     cursor: pointer;
     width: 100%;
     font-size: 16px;
+}
+
+.close {
+  position: absolute;      /* Position the close button */
+  top: 10px;
+  right: 10px;
+  font-size: 24px;          /* Make it large enough */
+  cursor: pointer;         /* Pointer cursor on hover */
+  color: #333;              /* Dark color for the X */
+}
+
+.close:hover {
+  color: red;               /* Red color when hovered */
 }
