@@ -2,7 +2,7 @@
 const products = [
     { name: "Classic Chicken", price: 46, qty: 0 },
     { name: "Spicy Chicken", price: 47, qty: 0 },
-    { name: "Roasted Chicken", price: 48, qty: 0 },
+    { name: "Roasted Chicken", price: 300, qty: 0 },
   ];
   
   // Add Quantity to the Selected Product
