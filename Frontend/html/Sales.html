@@ -20,8 +20,9 @@
         </label>
 
         <!-- Site logo -->
-        <label class="logo">Five Star</label>
-        <img src="" alt="">
+        <img class="image1" src="../assets/images/5 star.png" alt="">
+        <label class="logo"> Five Star</label>
+        
         <!-- Navigation links -->
           <ul>
             <li><a id="tag" href="POS.html">POS</a></li>
@@ -29,7 +30,9 @@
             <li><a id="tag" class="active"href="Sales.html">Sales</a></li>
             <li><a id="tag" href="invento.html">Inventory</a></li>
             <li class="profile-container">
+              <a href="../html/admin.html">
                 <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+              </a>
                 <a href="login.html">
                   <button class="logout-button">Log Out</button>
               </a>
@@ -42,9 +45,14 @@
       <!-- Section for image -->
       
   <!-- Content -->
-  <div class="content">
-    <h2>Inventory</h2>
+  <th scope="col" class="dates mb-2">
+      <input type="date" class="date form-control" id="date" placeholder="Select Date" required>
+  </th>
 
+
+
+  <div class="content v1">
+      
     <!-- Inventory Table -->
     <table>
       <thead>
@@ -107,28 +115,50 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
+       <!-- Add Product Modal -->
+       <div class="modal" id="addProductModal" style="display: none;">
+        <div class="modal-contents">
+          
+          <div class="modal-body">
+            <form id="addProductForm">
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" class="form-control" placeholder="Enter product name" required>
+              </div>
+              <div class="form-group">
+                <label for="productId">Product ID</label>
+                <input type="text" id="productId" class="form-control" placeholder="Enter product ID" required>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="form-select" required>
+                  <option value="">Select a category</option>
+                  <option value="Classic">Classic</option>
+                  <option value="Spicy">Spicy</option>
+                  <option value="Roasted">Roasted</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" class="form-control" min="1" placeholder="Enter quantity" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAddProductModal()">Close</button>
+                <button type="submit" class="btn btn-primary">Save Item</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
 
-  <script>
-    let rowToDelete;
+    <!-- Button to Open Modal -->
+  
 
-    function showModal(element) {
-      rowToDelete = element.closest('tr'); // Store the row to delete
-      document.getElementById('deleteModal').style.display = 'flex';
-    }
 
-    function hideModal() {
-      document.getElementById('deleteModal').style.display = 'none';
-    }
-
-    function confirmDelete() {
-      if (rowToDelete) {
-        rowToDelete.remove(); // Delete the row from the table
-        rowToDelete = null; // Clear the reference
-      }
-      hideModal();
-    }
-  </script>
+  <script src="../JS/sales.js"></script>
   </body>
 
   </html>

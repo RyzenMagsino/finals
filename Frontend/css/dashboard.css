@@ -19,12 +19,12 @@ nav {
   width: 100%;
 }
 
-label.logo {
+ .logo {
   color: white;
   font-size: 25px;
   line-height: 70px;
-  padding: 0 100px;
   font-weight: bold;
+  margin-left: 60px;
 }
 
 nav ul {
@@ -100,69 +100,14 @@ nav ul li #tag {
   background-color: #e60000;
 }
 
-/* Responsive Media Queries */
-@media (max-width: 1050px) {
-  label.logo {
-    padding-left: 30px;
-  }
-
-  nav ul li a {
-    font-size: 16px;
-  }
+.image1{
+  border-radius: 50%;
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 5px;
 }
 
-@media (max-width: 890px) {
-  .checkbtn {
-    display: block;
-
-  }
-
-  label.logo {
-    font-size: 22px;
-  }
-
-  nav ul {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #2c3e50;
-    top: 70px;
-    left: -100%;
-    text-align: center;
-    transition: all .5s;
-    display: block;
-  }
-
-  nav ul li {
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
-  }
-
-  nav ul li a {
-    font-size: 20px;
-  }
-
-  .profile-container {
-    justify-content: center;
-  }
-
-  a:hover,
-  a.active {
-    background: none;
-    color: #0082e6;
-  }
-
-  #check:checked~ul {
-    left: 0;
-  }
-}
-
-section {
-  background: url("bg.jpg") no-repeat;
-  background-size: cover;
-  height: calc(100vh - 70px);
-}
 
 /* Dashboard Styles */
 h1 {
@@ -212,21 +157,20 @@ h1 {
 }
 
 /* Bar Chart Styles */
-.product-sales h3 {
-  margin-bottom: 200px;
+.chart-container {
+  width: 80%; /* Adjust the width as needed */
+  max-width: 600px;
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.bar-chart {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-  height: 100px;
-}
-
-.bar {
-  width: 25%;
-  background-color: #ff4b4b;
-  border-radius: 4px 4px 0 0;
+canvas {
+  display: block;
+  width: 100%; /* Responsive width for the chart */
+  height: auto; /* Maintain aspect ratio */
 }
 
 /* Product List Styles */

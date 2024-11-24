@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Responsive Navbar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav>
+    <!-- Checkbox for toggling menu -->
+    <input type="checkbox" id="check">
+
+    <!-- Menu icon -->
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <!-- Site logo -->
+    <label class="logo">Five Star</label>
+    <img src="" alt="">
+    <!-- Navigation links -->
+    <ul>
+      <li><a id="tag" href="POS.html">POS</a></li>
+      <li><a id="tag" href="Dashboard.html">Dashboard</a></li>
+      <li><a id="tag" href="Sales.html">Sales</a></li>
+      <li><a id="tag" href="invento.html">Inventory</a></li>
+      <li class="profile-container">
+          <i class="fa-solid fa-user profile-icon" style="color: #ffffff;"></i>
+ 
+          
+          <a href="login.html">
+            <button class="logout-button">Log Out</button>
+          </a>
+      </li>
+    </ul>
+  </nav>
+       
+        <div class="settings-container">
+            <div class="settings-menu">
+                <h2>SETTINGS</h2>
+                <p>🔒 Security</p>
+            </div>
+            <div class="settings-content">
+                <label>Password: ************</label>
+                <button onclick="openModal()">Change Password</button>
+            </div>
+        </div>
+
+        <div id="passwordModal" class="modal">
+          <div class="modal-content">
+              <!-- Close button (X) -->
+              <span class="close" onclick="closeModal()">&times;</span>
+              
+              <h3>Change Password</h3>
+              <input type="password" placeholder="Current Password" />sss
+              <input type="password" placeholder="New Password" />
+              <input type="password" placeholder="Confirm Password" />
+              <button onclick="closeModal()">Save</button>
+          </div>
+      </div>
+      
+        <script src ="../JS/admin.js"></script>  
+  <!-- Section for image -->
+  <section></section>
+</body>
+
+</html>
