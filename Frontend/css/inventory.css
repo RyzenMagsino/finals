@@ -135,55 +135,161 @@ nav ul li #tag {
   color: #333;
   margin: 20px 0;
 }
+.v1
+{
+  display: flex;
+  justify-content: center;
 
-
+  width: 100%;
+  height: 100vh;
+  margin-top: 100px;
+}
+table{
+   height: 50vh;
+}
+/* Table styling */
 .table-container {
-  width: 80vw;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 50px solid;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .sales-table {
-  width: 100%;
-  border-collapse: collapse;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    border-collapse: collapse;
+    margin: 20px 0;
+    
 }
 
 .sales-table th,
 .sales-table td {
-  padding: 12px;
-  text-align: left;
-
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
 }
 
+.delete-btn {
+    font-size: 20px;
+    cursor: pointer;
+    color: #f44336;
+    background: none;
+    border: none;
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+}
+
+
+/* Buttons inside modal */
+.confirm-btn,
+.cancel-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f0f0f0;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background-color: #ffd700;
+  color: #a30000;
+}
 td {
-  height: 9vh;
+  background-color: #d0d0d0;
+}
+.delete-btn {
+  cursor: pointer;
+  color: #e40000;
 }
 
-.sales-table thead {
-  background-color: #a30000;
+/* Modal Styles */
+#deleteModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  position: relative;
+  background: #e40000;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  border-radius: 8px;
+  width: 300px;
+  height: 150px;
+}
+.modal-content p {
+  margin: 20px 0;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+}
+.modal-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-no {
+  background: #ccc;
+  color: #333;
+}
+.add-product{
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  top: 42%;
+  left: 5%;
+  background-color: red;
   color: white;
 }
 
-.sales-table th {
-  font-weight: bold;
-  color: #ffd700;
+.btn-yes {
+  background: #fff;
+  color: #e40000;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5em;
+  color: #fff;
+  cursor: pointer;
 }
 
-.sales-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.sales-table tbody tr:nth-child(odd) {
-  background-color: #fff;
-}
-
-.product-variant {
-  font-style: italic;
-  color: #555;
-  background-color: #f0f0f0;
-}
+/*logo */
 
 .image1{
   border-radius: 50%;
@@ -208,8 +314,6 @@ td {
   font-size: 16px;
   color: red;
 }
-
-.dates {}
 
 /*para sa add*/
 /* Modal Overlay */
@@ -329,3 +433,13 @@ td {
   background-color: #aaa;
 }
 
+.date{
+  background-color: #e40000;
+  width: 125px;
+  padding: 10px;
+  color: white;
+  font-weight: bold; 
+  position: absolute;
+  top: 42%;
+  left: 12%;
+}

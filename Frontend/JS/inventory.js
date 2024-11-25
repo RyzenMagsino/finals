@@ -42,3 +42,23 @@ addProductForm.addEventListener('submit', function (e) {
   // Close the modal and reset the form
   closeAddProductModal();
 });
+
+let rowToDelete; // Only one declaration of this variable
+
+// Delete row functionality
+function showModal(element) {
+  rowToDelete = element.closest('tr'); // Store the row to delete
+  document.getElementById('deleteModal').style.display = 'flex';
+}
+
+function hideModal() {
+  document.getElementById('deleteModal').style.display = 'none';
+}
+
+function confirmDelete() {
+  if (rowToDelete) {
+    rowToDelete.remove(); // Delete the row from the table
+    rowToDelete = null; // Clear the reference
+  }
+  hideModal();
+}
