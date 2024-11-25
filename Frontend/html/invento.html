@@ -20,7 +20,7 @@
     </label>
 
     <!-- Site logo -->
-    <img class="image1" src="../assets/images/5 star.png" alt="">
+    <img class="image1" src="../assets/images/chicken.jpg" alt="">
     <label class="logo"> Five Star</label>
     
     <!-- Navigation links -->
@@ -60,41 +60,8 @@
        </div>
            
      
-             <!-- Add Product Modal -->
-       <div class="modal" id="addProductModal" style="display: none;">
-        <div class="modal-contents">
-          
-          <div class="modal-body">
-            <form id="addProductForm">
-              <div class="form-group">
-                <label for="productName">Product Name</label>
-                <input type="text" id="productName" class="form-control" placeholder="Enter product name" required>
-              </div>
-              <div class="form-group">
-                <label for="productId">Product ID</label>
-                <input type="text" id="productId" class="form-control" placeholder="Enter product ID" required>
-              </div>
-              <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category" class="form-select" required>
-                  <option value="">Select a category</option>
-                  <option value="Classic">Classic</option>
-                  <option value="Spicy">Spicy</option>
-                  <option value="Roasted">Roasted</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" class="form-control" min="1" placeholder="Enter quantity" required>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeAddProductModal()">Close</button>
-                <button type="submit" class="btn btn-primary">Save Item</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+            
+        
 
       <div class="content v1">
       
@@ -161,6 +128,44 @@
           </div>
         </div>
       </div> 
+
+
+
+      <!-- Add Product Modal -->
+      <div class="modal" id="addProductModal" style="display: none;">
+        <div class="modal-contents">
+          
+          <div class="modal-body">
+            <form id="addProductForm">
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" class="form-control" placeholder="Enter product name" required>
+              </div>
+              <div class="form-group">
+                <label for="productId">Product ID</label>
+                <input type="text" id="productId" class="form-control" placeholder="Enter product ID" required>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="form-select" required>
+                  <option value="">Select a category</option>
+                  <option value="Classic">Classic</option>
+                  <option value="Spicy">Spicy</option>
+                  <option value="Roasted">Roasted</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" class="form-control" min="1" placeholder="Enter quantity" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAddProductModal()">Close</button>
+                <button type="submit" class="btn btn-primary">Save Item</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       
       
              
