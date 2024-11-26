@@ -6,7 +6,7 @@ new Chart(document.getElementById("bar-chart"), {
         datasets: [
             {
                 label: "Chicken Flavor",
-                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                backgroundColor: ["#008000", "#ffff00", "#ff0000"],
                 data: [2478, 5267, 734]
             }
         ]

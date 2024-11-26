@@ -268,7 +268,7 @@ td {
   border: none;
   border-radius: 5px;
   position: absolute;
-  top: 42%;
+  top: 33%;
   left: 5%;
   background-color: red;
   color: white;
@@ -440,6 +440,6 @@ td {
   color: white;
   font-weight: bold; 
   position: absolute;
-  top: 42%;
-  left: 12%;
+  top: 33%;
+  left: 11%;
 }

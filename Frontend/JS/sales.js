@@ -40,7 +40,7 @@ addProductForm.addEventListener('submit', function (e) {
   // Get form data
   const productName = document.getElementById('productName').value;
   const productId = document.getElementById('productId').value;
-  const category = document.getElementById('category').value;
+  
   const quantity = document.getElementById('quantity').value;
 
   // Get current date
@@ -51,7 +51,7 @@ addProductForm.addEventListener('submit', function (e) {
   newRow.innerHTML = `
     <td>${productId}</td>
     <td>${currentDate}</td>
-    <td>${productName} (${category})</td>
+    <td>${productName} </td>
     <td>${quantity}</td>
     <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
   `;
