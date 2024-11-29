@@ -20,7 +20,7 @@
     </label>
 
     <!-- Site logo -->
-    <img class="image1" src="../assets/images/5 star.png" alt="">
+    <img class="image1" src="../assets/images/chicken.jpg" alt="">
     <label class="logo"> Five Star</label>
     
     <!-- Navigation links -->
@@ -59,43 +59,80 @@
         <button class="btn btn-secondary add-product" onclick="openAddProductModal()">Add Product</button>
        </div>
            
-      <div class="table-container">
-        <table class="sales-table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Date</th>
-                    <th>Product Name</th>
-                    <th>Qty</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>10/10/24</td>
-                    <td>Classic Chicken</td>
-                    <td>10</td>
+     
+            
+        
 
-                    <td><button class="delete-btn">🗑️</button></td>
-                </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>10/10/24</td>
-                    <td>Classic Chicken</td>
-                    <td>10</td>
-                    <td><button class="delete-btn">🗑️</button></td>
-                 </tr>
-                <tr>
-                  <td>3</td>
-                  <td>10/10/24</td>
-                  <td>Classic Chicken</td>
-                  <td>10</td>
-                  <td><button class="delete-btn">🗑️</button></td>
-              </tr>
-            </table> 
-             <!-- Add Product Modal -->
-       <div class="modal" id="addProductModal" style="display: none;">
+      <div class="content v1">
+      
+        <!-- Inventory Table -->
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DATE</th>
+              <th>PRODUCT NAME</th>
+              <th>QUANTITY</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>09/10/23</td>
+              <td>classic</td>
+              <td>28</td>
+              <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>09/11/23</td>
+              <td>spicy</td>
+              <td>35</td>
+              <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>09/10/23</td>
+              <td>classic</td>
+              <td>28</td>
+              <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>09/10/23</td>
+              <td>classic</td>
+              <td>28</td>
+              <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>09/10/23</td>
+              <td>classic</td>
+              <td>28</td>
+              <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
+            </tr>
+            <!-- Additional rows as needed -->
+          </tbody>
+        </table>
+    
+        <!-- Delete Modal -->
+        <div id="deleteModal">
+          <div class="modal-content">
+            <button class="close-btn" onclick="hideModal()">×</button>
+            <p>Are you sure you want to delete this item?</p>
+            <div class="modal-buttons">
+              <button class="btn-no" onclick="hideModal()">NO</button>
+              <button class="btn-yes" onclick="confirmDelete()">YES</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+
+
+      <!-- Add Product Modal -->
+      <div class="modal" id="addProductModal" style="display: none;">
         <div class="modal-contents">
           
           <div class="modal-body">
@@ -104,18 +141,8 @@
                 <label for="productName">Product Name</label>
                 <input type="text" id="productName" class="form-control" placeholder="Enter product name" required>
               </div>
-              <div class="form-group">
-                <label for="productId">Product ID</label>
-                <input type="text" id="productId" class="form-control" placeholder="Enter product ID" required>
-              </div>
-              <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category" class="form-select" required>
-                  <option value="">Select a category</option>
-                  <option value="Classic">Classic</option>
-                  <option value="Spicy">Spicy</option>
-                  <option value="Roasted">Roasted</option>
-                </select>
+              
+             
               </div>
               <div class="form-group">
                 <label for="quantity">Quantity</label>
@@ -128,7 +155,7 @@
             </form>
           </div>
         </div>
-      </div>
+      
       
       
              

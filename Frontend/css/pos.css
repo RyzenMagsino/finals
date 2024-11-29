@@ -111,9 +111,19 @@ nav ul li #tag {
 /*dropdown*/
 
 /*new*/
-.container {
+.pos-table {
   width: 90%;
-  max-width: 800px;
+  max-width: 70%;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.summary-table {
+  width: 90%;
+  max-width:70%;
   margin: 30px auto;
   padding: 20px;
   background: white;
@@ -122,9 +132,21 @@ nav ul li #tag {
 }
 
 h1 {
-  text-align: center;
+  margin-left: 46%;
+  margin-top: 15px;
+  
   margin-bottom: 20px;
   color: #333;
+
+}
+.centered-title {
+  text-align: center; /* Horizontal alignment */
+  margin: 0;
+  position: absolute;
+  top: 50%; /* Vertical alignment */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Ensure proper centering */
+  font-size: 2em;
 }
 
 /* Dropdown and Buttons Section */
@@ -132,6 +154,8 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
+  margin-left: 15%;
   margin-bottom: 20px;
 }
 
@@ -162,6 +186,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  top : 10%;
 }
 
 th, td {
@@ -191,10 +216,12 @@ input[type="number"] {
 
 .pay-btn {
   display: block;
-  width: 100%;
+  width: 90%;
+  max-width: 25%;
+  margin: 30px auto;
   padding: 10px;
   font-size: 16px;
-  background-color: #28a745;
+  background-color: #3664fd;
   border: none;
   border-radius: 4px;
   color: white;
@@ -204,3 +231,4 @@ input[type="number"] {
 .pay-btn:hover {
   background-color:  #a30000;
 }
+

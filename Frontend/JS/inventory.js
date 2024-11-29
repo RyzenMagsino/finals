@@ -13,15 +13,20 @@ function closeAddProductModal() {
   addProductForm.reset(); // Reset the form fields
 }
 
+// Initialize product ID counter
+let productIdCounter = 1; // You can also use a timestamp or UUID for unique IDs
+
 // Handle Add Product form submission
 addProductForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
   // Get form data
   const productName = document.getElementById('productName').value;
-  const productId = document.getElementById('productId').value;
-  const category = document.getElementById('category').value;
   const quantity = document.getElementById('quantity').value;
+
+  // Generate unique product ID
+  const productId = `P-${productIdCounter.toString().padStart(4, '0')}`;
+  productIdCounter++; // Increment counter for the next product
 
   // Get current date
   const currentDate = new Date().toLocaleDateString();
@@ -31,7 +36,7 @@ addProductForm.addEventListener('submit', function (e) {
   newRow.innerHTML = `
     <td>${productId}</td>
     <td>${currentDate}</td>
-    <td>${productName} (${category})</td>
+    <td>${productName}</td>
     <td>${quantity}</td>
     <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
   `;
@@ -42,3 +47,25 @@ addProductForm.addEventListener('submit', function (e) {
   // Close the modal and reset the form
   closeAddProductModal();
 });
+
+
+let rowToDelete; // Only one declaration of this variable
+
+// Delete row functionality
+function showModal(element) {
+  rowToDelete = element.closest('tr'); // Store the row to delete
+  document.getElementById('deleteModal').style.display = 'flex';
+}
+
+function hideModal() {
+  document.getElementById('deleteModal').style.display = 'none';
+}
+
+function confirmDelete() {
+  if (rowToDelete) {
+    rowToDelete.remove(); // Delete the row from the table
+    rowToDelete = null; // Clear the reference
+  }
+  hideModal();
+}
+
