@@ -1,25 +1,37 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const express = require('express')
-const mongoose = require('mongoose')
-const loginRoutes = require('./routes/login')
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const loginRoutes = require('./routes/login');
+const posRoutes = require('./routes/pos');
 
+const app = express();
 
-//express app
-const app = express()
+// Middleware
+app.use(express.json());
 
-//middleware
-app.use(express.json())
-
+// Log requests
 app.use((req, res, next) => {
-  console.log(req.path, req.method)
-  next()
-})
+    console.log(req.path, req.method);
+    next();
+});
 
-//routes
-app.use('/api/login', loginRoutes)
+// Serve static files (CSS, JS, HTML)
+app.use(express.static(path.join(__dirname, '../Frontend')));
 
-//connect to db
+// Serve login.html on the root route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Frontend', 'html', 'login.html'));
+});
+
+// Use POS routes
+app.use('/api/pos', posRoutes);
+
+// API routes
+app.use('/api/login', loginRoutes);
+
+// Connect to MongoDB and start the server
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
