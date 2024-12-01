@@ -1,76 +1,29 @@
-// Global variable to store products from the backend
-let products = [];
-
-// Fetch products from the backend (MongoDB)
-async function fetchProducts() {
-  try {
-    const response = await fetch('http://localhost:4000/api/pos');
-    const data = await response.json();
-
-    if (response.ok) {
-      products = data.products;
-
-      // Populate dropdown
-      const dropdown = document.getElementById('product-dropdown');
-      dropdown.innerHTML = products.map(
-        (product, index) => `<option value="${index}">${product.name} - ₱${product.price}</option>`
-      ).join('');
-
-      updateTable();
-    } else {
-      alert('Failed to fetch products');
-    }
-  } catch (err) {
-    console.error('Error fetching products:', err);
-  }
-}
-
-
-// Function to update the backend when the quantity changes
-async function updateProductQuantity(productId, qty) {
-  try {
-    const response = await fetch(`http://localhost:4000/api/pos/${products[selectedIndex]._id}/update`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ qty }),
-    });
-    
-
-    const data = await response.json();
-    if (response.ok) {
-      console.log('Product quantity updated:', data);
-      updateTable();
-    } else {
-      alert('Failed to update product quantity');
-    }
-  } catch (err) {
-    console.error('Error updating product quantity:', err);
-  }
-}
+// List of Products
+const products = [
+  { name: "Classic Chicken", price: 46, qty: 0 },
+  { name: "Spicy Chicken", price: 47, qty: 0 },
+  { name: "Roasted Chicken", price: 300, qty: 0 },
+];
 
 // Add Quantity to the Selected Product
-async function addQuantity() {
+function addQuantity() {
   const dropdown = document.getElementById("product-dropdown");
   const selectedIndex = parseInt(dropdown.value, 10);
   
-  // Increment the quantity locally
+  // Increment the quantity of the selected product
   products[selectedIndex].qty++;
-  
-  // Update the backend with the new quantity
-  await updateProductQuantity(products[selectedIndex]._id, products[selectedIndex].qty);
+  updateTable();
 }
 
 // Remove Quantity from the Selected Product
-async function removeQuantity() {
+function removeQuantity() {
   const dropdown = document.getElementById("product-dropdown");
   const selectedIndex = parseInt(dropdown.value, 10);
 
-  // Decrement the quantity locally (if > 0)
+  // Decrement the quantity of the selected product, ensuring it doesn't go below zero
   if (products[selectedIndex].qty > 0) {
     products[selectedIndex].qty--;
-    
-    // Update the backend with the new quantity
-    await updateProductQuantity(products[selectedIndex]._id, products[selectedIndex].qty);
+    updateTable();
   }
 }
 
@@ -80,7 +33,7 @@ function updateTable() {
   tableBody.innerHTML = "";
   let total = 0;
 
-  // Generate Table Rows Dynamically from products
+  // Generate Table Rows Dynamically
   products.forEach((product) => {
     if (product.qty > 0) {
       const productTotal = product.qty * product.price;
@@ -109,48 +62,21 @@ function calculateChange() {
   document.getElementById("change").innerText = change >= 0 ? change.toFixed(2) : "0.00";
 }
 
-// Process Payment and Save Transaction to Backend
-async function pay() {
+// Process Payment
+function pay() {
   const payment = parseFloat(document.getElementById("payment").value) || 0;
   const total = parseFloat(document.getElementById("total-price").innerText);
 
   if (payment >= total) {
-    // Create the transaction object
-    const transaction = {
-      totalAmount: total,
-      paymentAmount: payment,
-      changeAmount: payment - total,
-      products: products.filter(product => product.qty > 0),
-    };
-
-    // Send transaction details to the backend for processing
-    try {
-      const response = await fetch('http://localhost:4000/api/sales', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(transaction),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert('Payment Successful!');
-        // Reset quantities after payment
-        products.forEach((product) => (product.qty = 0));
-        document.getElementById("payment").value = "";
-        updateTable();
-        calculateChange();
-      } else {
-        alert('Payment failed');
-      }
-    } catch (err) {
-      console.error('Error processing payment:', err);
-    }
+    alert("Payment Successful!");
+    products.forEach((product) => (product.qty = 0));
+    document.getElementById("payment").value = "";
+    updateTable();
+    calculateChange();
   } else {
     alert("Insufficient Payment!");
   }
 }
 
-// Initialize the Table and Fetch Products on Page Load
-fetchProducts();
+// Initialize the Table on Page Load
+updateTable();

@@ -80,15 +80,15 @@ router.post('/sales', async (req, res) => {
 
 // API route to add a new product
 router.post('/add-product', async (req, res) => {
-    const { name, price, stock } = req.body;
+    const { name, price, qty } = req.body;
 
-    if (!name || !price || !stock) {
+    if (!name || !price || !qty) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
     try {
         // Create a new product in the database
-        const newProduct = new Product({ name, price, stock });
+        const newProduct = new Product({ name, price, qty });
         await newProduct.save();
 
         res.status(201).json({ message: 'Product added successfully', product: newProduct });

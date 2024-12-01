@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const loginRoutes = require('./routes/login');
 const posRoutes = require('./routes/pos');
+const inventoryRouter = require('./routes/inventory');
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.use(express.static(path.join(__dirname, '../Frontend')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../Frontend', 'html', 'login.html'));
 });
+
+// Use inventory routes
+app.use('/api/inventory', inventoryRouter);
 
 // Use POS routes
 app.use('/api/pos', posRoutes);
