@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+
 // Route to add a new product
 router.post('/', async (req, res) => {
     const { productName, quantity } = req.body;

@@ -3,13 +3,15 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 const loginRoutes = require('./routes/login');
-const posRoutes = require('./routes/pos');
 const inventoryRouter = require('./routes/inventory');
+const salesRouter = require('./routes/sales');
 
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Log requests
@@ -26,11 +28,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../Frontend', 'html', 'login.html'));
 });
 
+// Use sales routes
+app.use('/api/sales', salesRouter);
+
 // Use inventory routes
 app.use('/api/inventory', inventoryRouter);
-
-// Use POS routes
-app.use('/api/pos', posRoutes);
 
 // API routes
 app.use('/api/login', loginRoutes);
