@@ -1,91 +1,100 @@
-let rowToDelete; // Only one declaration of this variable
+const salesApiUrl = 'http://localhost:4000/api/sales'; // Backend sales URL
 
-  // Show modal to confirm deletion
-  function showModal(element) {
-    rowToDelete = element.closest('tr'); // Store the row to delete
-    document.getElementById('deleteModal').style.display = 'flex';
+// Function to fetch sales data and populate the table
+async function fetchSalesData() {
+  try {
+    const response = await fetch('http://localhost:4000/api/sales'); // Replace with your API URL
+    const data = await response.json();
+
+    console.log('Fetched Sales Data:', data); // Debugging log for fetched data
+
+    const tableBody = document.getElementById('salesTableBody');
+    tableBody.innerHTML = ''; // Clear the table before adding rows
+
+    data.forEach(product => {
+      console.log('Processing Product:', product); // Debug each product in the loop
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${product._id}</td>
+        <td>${new Date(product.date).toLocaleDateString()}</td>
+        <td>${product.productName}</td>
+        <td>${product.quantity}</td>
+        <td>${product.totalPrice}</td>
+        <td><span class="delete-btn" onclick="showDeleteModal('${product._id}')">🗑️</span></td>
+      `;
+      tableBody.appendChild(row);
+      console.log('Row added to table'); // Log when the row is added
+    });
+
+  } catch (err) {
+    console.error('Error fetching sales data:', err);
   }
-
-  // Hide modal
-  function hideModal() {
-    document.getElementById('deleteModal').style.display = 'none';
-  }
-
-  // Confirm deletion and remove row
-  function confirmDelete() {
-    if (rowToDelete) {
-      rowToDelete.remove(); // Delete the row from the table
-      rowToDelete = null; // Clear the reference
-    }
-    hideModal();
-  }
-
-
-// Reference elements for Add Product Modal
-const addProductModal = document.getElementById('addProductModal');
-const addProductForm = document.getElementById('addProductForm');
-const tableBody = document.querySelector('table tbody');
-
-// Open and close modal
-function openAddProductModal() {
-  addProductModal.style.display = 'block';
 }
 
-function closeAddProductModal() {
-  addProductModal.style.display = 'none';
-  addProductForm.reset(); // Reset the form fields
-}
 
-// Handle Add Product form submission
-addProductForm.addEventListener('submit', function (e) {
+// Function to add a new sale
+async function addSale(e) {
   e.preventDefault();
 
-  // Get form data
-  const productName = document.getElementById('productName').value;
-  const productId = document.getElementById('productId').value;
-  
-  const quantity = document.getElementById('quantity').value;
+  const productName = document.getElementById('saleProductName').value;
+  const quantity = parseInt(document.getElementById('saleQuantity').value, 10);
 
-  // Get current date
-  const currentDate = new Date().toLocaleDateString();
+  // Fixed product prices
+  const prices = {
+    classic: 46,
+    spicy: 47,
+    roasted: 250,
+  };
 
-  // Create new table row
-  const newRow = document.createElement('tr');
-  newRow.innerHTML = `
-    <td>${productId}</td>
-    <td>${currentDate}</td>
-    <td>${productName} </td>
-    <td>${quantity}</td>
-    <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
-  `;
+  if (!prices[productName.toLowerCase()]) {
+    alert('Invalid product selected!');
+    return;
+  }
 
-  // Append the new row to the table
-  tableBody.appendChild(newRow);
+  const totalPrice = prices[productName.toLowerCase()] * quantity;
 
-  // Close the modal and reset the form
-  closeAddProductModal();
-});
+  const saleData = { productName, quantity, totalPrice };
 
+  try {
+    const response = await fetch(salesApiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(saleData),
+    });
 
-// Function to filter rows by date
-function filterByDate() {
-  const selectedDate = document.getElementById('date').value; // Get the selected date in YYYY-MM-DD format
-  const rows = document.querySelectorAll('table tbody tr'); // Select all rows in the table body
-
-  rows.forEach(row => {
-    const rowDate = row.cells[1].textContent; // Extract the date from the second column of the row
-    const formattedRowDate = new Date(rowDate).toISOString().split('T')[0]; // Format the row date to YYYY-MM-DD
-
-    // Show or hide the row based on whether the dates match
-    if (selectedDate && formattedRowDate === selectedDate) {
-      row.style.display = ''; // Show the row
+    if (response.ok) {
+      alert('Sale successfully added!');
+      fetchSalesData(); // Refresh sales table after addition
+      document.getElementById('saleForm').reset(); // Clear form inputs
     } else {
-      row.style.display = 'none'; // Hide the row
+      console.error('Error adding sale:', response.statusText);
+      alert('Failed to add sale.');
     }
-  });
+  } catch (err) {
+    console.error('Error adding sale:', err);
+  }
 }
 
-// Attach event listener to the date input
-document.getElementById('date').addEventListener('input', filterByDate);
+// Function to delete a sale
+async function deleteSale(saleId) {
+  try {
+    const response = await fetch(`${salesApiUrl}/${saleId}`, { method: 'DELETE' });
 
+    if (response.ok) {
+      alert('Sale deleted successfully!');
+      fetchSalesData(); // Refresh sales table after deletion
+    } else {
+      console.error('Error deleting sale:', response.statusText);
+      alert('Failed to delete sale.');
+    }
+  } catch (err) {
+    console.error('Error deleting sale:', err);
+  }
+}
 
+// Attach event listener to sale form
+document.getElementById('saleForm').addEventListener('submit', addSale);
+
+// Fetch sales data on page load
+document.addEventListener('DOMContentLoaded', fetchSalesData);

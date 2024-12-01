@@ -15,6 +15,7 @@ h1 {
   margin-bottom: 20px;
   color: #333;
 }
+
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -33,13 +34,13 @@ nav {
   left: 5px;
 }
 
- .logo {
+.logo {
   color: white;
   font-size: 25px;
   line-height: 70px;
   font-weight: bold;
   margin-left: 60px;
-}	
+}
 
 nav ul {
   float: right;
@@ -113,20 +114,21 @@ nav ul li #tag {
 .logout-button:hover {
   background-color: #e60000;
 }
+
 /* sa pic to na logo*/
 
-.v1
-{
+.v1 {
   display: flex;
   justify-content: center;
-
   width: 100%;
   height: 100vh;
   margin-top: 100px;
 }
-table{
+
+table {
    height: 50vh;
 }
+
 /* Table styling */
 .table-container {
     max-width: 90%;
@@ -138,7 +140,6 @@ table{
     width: 100px;
     border-collapse: collapse;
     margin: 20px 0;
-    
 }
 
 .sales-table th,
@@ -159,7 +160,6 @@ table{
 .delete-btn:hover {
     color: #d32f2f;
 }
-
 
 /* Buttons inside modal */
 .confirm-btn,
@@ -186,17 +186,21 @@ table {
   margin-top: 20px;
   background-color: #f0f0f0;
 }
+
 th, td {
   padding: 10px;
   text-align: center;
 }
+
 th {
   background-color: #ffd700;
   color: #a30000;
 }
+
 td {
   background-color: #d0d0d0;
 }
+
 .delete-btn {
   cursor: pointer;
   color: #e40000;
@@ -204,33 +208,48 @@ td {
 
 /* Modal Styles */
 #deleteModal {
-  display: none;
-  position: fixed;
+  display: none; /* Default to hidden */
+  position: fixed; /* Fixed position relative to the viewport */
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
+  width: 100%; /* Full viewport width */
+  height: 100%; /* Full viewport height */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  justify-content: center; /* Align modal content horizontally */
+  align-items: center; /* Align modal content vertically */
+  z-index: 1000; /* Ensure it's above other content */
+  display: none; /* Ensure modal is hidden initially */
 }
+
+/* Add a new style to center modal content */
+#deleteModal.show {
+  display: flex; /* Show the modal and apply flexbox */
+}
+
+/* Modal Content */
 .modal-content {
-  position: relative;
   background: #e40000;
   padding: 20px;
   text-align: center;
   color: #fff;
   border-radius: 8px;
-  width: 300px;
-  height: 150px;
+  width: 300px; /* Width of the modal */
+  height: auto;
+  animation: fadeIn 0.3s ease;
 }
+
+
+
 .modal-content p {
-  margin: 20px 0;
+  margin: 20px 0; /* Add space between the text and buttons */
 }
+
+/* Modal buttons container */
 .modal-buttons {
   display: flex;
   justify-content: center;
 }
+
 .modal-buttons button {
   padding: 10px 20px;
   margin: 0 10px;
@@ -239,21 +258,17 @@ td {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .btn-no {
   background: #ccc;
   color: #333;
 }
 
-
-.button-div{
-  display: block;
-  position: relative;
-  margin-bottom: 80px;
-}
 .btn-yes {
   background: #fff;
   color: #e40000;
 }
+
 .close-btn {
   position: absolute;
   top: 10px;
@@ -265,15 +280,17 @@ td {
   cursor: pointer;
 }
 
+
+
 /*para sa add*/
 /* Modal Overlay */
 
-.date{
+.date {
   background-color: #e40000;
   width: 125px;
   padding: 10px;
   color: white;
-  font-weight: bold; 
+  font-weight: bold;
   position: absolute;
   top: 127px;
   left: 5%;

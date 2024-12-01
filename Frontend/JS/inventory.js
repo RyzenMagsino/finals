@@ -15,15 +15,15 @@ async function fetchInventory() {
     let roastedTotal = 0;
 
     data.forEach(product => {
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <td>${product.id}</td> <!-- Use the custom id -->
-        <td>${new Date(product.date).toLocaleDateString()}</td>
-        <td>${product.productName}</td>
-        <td>${product.quantity}</td>
-        <td><span class="delete-btn" onclick="deleteProduct('${product._id}')">🗑️</span></td>
-      `;
-      tableBody.appendChild(newRow);
+  const newRow = document.createElement('tr');
+  newRow.innerHTML = `
+    <td>${product.id}</td> <!-- Use the custom id -->
+    <td>${new Date(product.date).toLocaleDateString()}</td>
+    <td>${product.productName}</td>
+    <td>${product.quantity}</td>
+    <td><span class="delete-btn" onclick="deleteProduct('${product._id}')">🗑️</span></td>
+  `;
+  tableBody.appendChild(newRow);
 
       // Update totals based on product name
       if (product.productName.toLowerCase() === 'classic') {
