@@ -1,71 +1,107 @@
-// Reference elements for Add Product Modal
-const addProductModal = document.getElementById('addProductModal');
-const addProductForm = document.getElementById('addProductForm');
-const tableBody = document.querySelector('table tbody');
+const apiUrl = 'http://localhost:4000/api/inventory'; // Backend URL
 
-// Open and close modal
-function openAddProductModal() {
-  addProductModal.style.display = 'block';
+// Function to fetch inventory data from the backend
+async function fetchInventory() {
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // Clear the existing table
+    const tableBody = document.querySelector('#inventory-body');
+    tableBody.innerHTML = '';
+
+    let classicTotal = 0;
+    let spicyTotal = 0;
+    let roastedTotal = 0;
+
+    data.forEach(product => {
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${product.id}</td> <!-- Use the custom id -->
+        <td>${new Date(product.date).toLocaleDateString()}</td>
+        <td>${product.productName}</td>
+        <td>${product.quantity}</td>
+        <td><span class="delete-btn" onclick="deleteProduct('${product._id}')">🗑️</span></td>
+      `;
+      tableBody.appendChild(newRow);
+
+      // Update totals based on product name
+      if (product.productName.toLowerCase() === 'classic') {
+        classicTotal += product.quantity;
+      } else if (product.productName.toLowerCase() === 'spicy') {
+        spicyTotal += product.quantity;
+      } else if (product.productName.toLowerCase() === 'roasted') {
+        roastedTotal += product.quantity;
+      }
+    });
+
+    // Update dashboard totals
+    document.getElementById('classic-total').textContent = classicTotal;
+    document.getElementById('spicy-total').textContent = spicyTotal;
+    document.getElementById('roasted-total').textContent = roastedTotal;
+  } catch (err) {
+    console.error('Error fetching inventory:', err);
+  }
 }
 
+// Add product functionality
+const addProductForm = document.getElementById('addProductForm');
+addProductForm.addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const productName = document.getElementById('productName').value; // Get selected product name from dropdown
+  const quantity = parseInt(document.getElementById('quantity').value, 10);
+
+  const productData = { productName, quantity };
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(productData),
+    });
+
+    if (response.ok) {
+      fetchInventory(); // Refresh the table and dashboard
+      closeAddProductModal(); // Close the modal
+    } else {
+      console.error('Error adding product:', response.statusText);
+    }
+  } catch (err) {
+    console.error('Error adding product:', err);
+  }
+});
+
+async function deleteProduct(productId) {
+  try {
+    const response = await fetch(`${apiUrl}/${productId}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      console.log('Product deleted successfully');
+      fetchInventory(); // Refresh the inventory
+    } else {
+      console.error('Error deleting product:', response.statusText);
+    }
+  } catch (err) {
+    console.error('Error deleting product:', err);
+  }
+}
+
+
+// Open Add Product Modal
+function openAddProductModal() {
+  document.getElementById('addProductModal').style.display = 'block'; // Show the modal
+}
+
+// Close Add Product Modal
 function closeAddProductModal() {
-  addProductModal.style.display = 'none';
+  document.getElementById('addProductModal').style.display = 'none'; // Close the modal
   addProductForm.reset(); // Reset the form fields
 }
 
-// Initialize product ID counter
-let productIdCounter = 1; // You can also use a timestamp or UUID for unique IDs
-
-// Handle Add Product form submission
-addProductForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  // Get form data
-  const productName = document.getElementById('productName').value;
-  const quantity = document.getElementById('quantity').value;
-
-  // Generate unique product ID
-  const productId = `P-${productIdCounter.toString().padStart(4, '0')}`;
-  productIdCounter++; // Increment counter for the next product
-
-  // Get current date
-  const currentDate = new Date().toLocaleDateString();
-
-  // Create new table row
-  const newRow = document.createElement('tr');
-  newRow.innerHTML = `
-    <td>${productId}</td>
-    <td>${currentDate}</td>
-    <td>${productName}</td>
-    <td>${quantity}</td>
-    <td><span class="delete-btn" onclick="showModal(this)">🗑️</span></td>
-  `;
-
-  // Append the new row to the table
-  tableBody.appendChild(newRow);
-
-  // Close the modal and reset the form
-  closeAddProductModal();
-});
-
-
-let rowToDelete; // Only one declaration of this variable
-
-// Delete row functionality
-function showModal(element) {
-  rowToDelete = element.closest('tr'); // Store the row to delete
-  document.getElementById('deleteModal').style.display = 'flex';
-}
-
-function hideModal() {
-  document.getElementById('deleteModal').style.display = 'none';
-}
-
-function confirmDelete() {
-  if (rowToDelete) {
-    rowToDelete.remove(); // Delete the row from the table
-    rowToDelete = null; // Clear the reference
-  }
-  hideModal();
-}
-
+// Call fetchInventory on page load
+document.addEventListener('DOMContentLoaded', fetchInventory);
