@@ -1,48 +1,63 @@
 const apiUrl = 'http://localhost:4000/api/inventory'; // Backend URL
 
+// Function to calculate total inventory from the inventory table
+function calculateTotalInventory(inventoryData) {
+  return inventoryData.reduce((total, item) => total + item.quantity, 0);
+}
 // Function to fetch inventory data from the backend
 async function fetchInventory() {
   try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    // Fetch inventory data
+    const inventoryResponse = await fetch(apiUrl);
+    const inventoryData = await inventoryResponse.json();
 
-    // Clear the existing table
-    const tableBody = document.querySelector('#inventory-body');
-    tableBody.innerHTML = '';
+    // Fetch sales data
+    const salesResponse = await fetch('http://localhost:4000/api/sales');
+    const salesData = await salesResponse.json();
 
-    let classicTotal = 0;
-    let spicyTotal = 0;
-    let roastedTotal = 0;
+    // Create a map to calculate remaining inventory after sales
+    const inventoryMap = inventoryData.reduce((map, item) => {
+      const productName = item.productName.toLowerCase();
+      if (!map[productName]) {
+        map[productName] = 0;
+      }
+      map[productName] += item.quantity; // Accumulate all quantities
+      return map;
+    }, {});
 
-    data.forEach(product => {
-  const newRow = document.createElement('tr');
-  newRow.innerHTML = `
-    <td>${product.id}</td> <!-- Use the custom id -->
-    <td>${new Date(product.date).toLocaleDateString()}</td>
-    <td>${product.productName}</td>
-    <td>${product.quantity}</td>
-    <td><span class="delete-btn" onclick="deleteProduct('${product._id}')">🗑️</span></td>
-  `;
-  tableBody.appendChild(newRow);
-
-      // Update totals based on product name
-      if (product.productName.toLowerCase() === 'classic') {
-        classicTotal += product.quantity;
-      } else if (product.productName.toLowerCase() === 'spicy') {
-        spicyTotal += product.quantity;
-      } else if (product.productName.toLowerCase() === 'roasted') {
-        roastedTotal += product.quantity;
+    // Deduct sales from the inventory map
+    salesData.forEach(sale => {
+      const productName = sale.productName.toLowerCase();
+      if (inventoryMap[productName] !== undefined) {
+        inventoryMap[productName] -= sale.quantity; // Deduct sales quantities
       }
     });
 
     // Update dashboard totals
-    document.getElementById('classic-total').textContent = classicTotal;
-    document.getElementById('spicy-total').textContent = spicyTotal;
-    document.getElementById('roasted-total').textContent = roastedTotal;
+    document.getElementById('classic-total').textContent = inventoryMap['classic'] || 0;
+    document.getElementById('spicy-total').textContent = inventoryMap['spicy'] || 0;
+    document.getElementById('roasted-total').textContent = inventoryMap['roasted'] || 0;
+
+    // Update the inventory table
+    const tableBody = document.querySelector('#inventory-body');
+    tableBody.innerHTML = ''; // Clear the table
+    inventoryData.forEach(product => {
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${product.id}</td>
+        <td>${new Date(product.date).toLocaleDateString()}</td>
+        <td>${product.productName}</td>
+        <td>${product.quantity}</td>
+        <td><span class="delete-btn" onclick="deleteProduct('${product._id}')">🗑️</span></td>
+      `;
+      tableBody.appendChild(newRow);
+    });
   } catch (err) {
     console.error('Error fetching inventory:', err);
   }
 }
+
+
 
 // Add product functionality
 const addProductForm = document.getElementById('addProductForm');

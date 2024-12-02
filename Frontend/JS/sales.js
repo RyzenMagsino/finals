@@ -1,4 +1,4 @@
-const salesApiUrl = 'http://localhost:4000/api/sales'; // Backend sales URL
+const salesApiUrl = 'http://localhost:4000'; // Backend sales URL
 
 // Function to fetch sales data and populate the table
 async function fetchSalesData() {
@@ -76,14 +76,44 @@ async function addSale(e) {
   }
 }
 
-// Function to delete a sale
+// Variable to store the sale ID to be deleted
+let saleIdToDelete = null;
+
+// Function to show the delete modal
+function showDeleteModal(saleId) {
+  saleIdToDelete = saleId; // Store the sale ID for use when confirming delete
+  const deleteModal = document.getElementById('deleteModal');
+  deleteModal.style.display = 'block'; // Show the modal
+}
+
+// Function to hide the delete modal
+function hideModal() {
+  const deleteModal = document.getElementById('deleteModal');
+  deleteModal.style.display = 'none'; // Hide the modal
+  saleIdToDelete = null; // Clear the stored sale ID
+}
+
+// Function to confirm deletion
+// Function to confirm deletion
+function confirmDelete() {
+  if (saleIdToDelete) {
+    deleteSale(saleIdToDelete); // Call the deleteSale function
+    hideModal(); // Hide the modal after confirming
+  } else {
+    console.error('No sale ID set for deletion');
+  }
+}
+
+// Function to delete a sale by ID
 async function deleteSale(saleId) {
   try {
-    const response = await fetch(`${salesApiUrl}/${saleId}`, { method: 'DELETE' });
+    const response = await fetch(`${salesApiUrl}/api/sales/${saleId}`, {
+      method: 'DELETE',
+    });
 
     if (response.ok) {
-      alert('Sale deleted successfully!');
-      fetchSalesData(); // Refresh sales table after deletion
+      alert('Sale successfully deleted!');
+      fetchSalesData(); // Refresh the sales table after deletion
     } else {
       console.error('Error deleting sale:', response.statusText);
       alert('Failed to delete sale.');
@@ -93,8 +123,6 @@ async function deleteSale(saleId) {
   }
 }
 
-// Attach event listener to sale form
-document.getElementById('saleForm').addEventListener('submit', addSale);
 
 // Fetch sales data on page load
 document.addEventListener('DOMContentLoaded', fetchSalesData);
