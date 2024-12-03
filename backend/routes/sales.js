@@ -17,43 +17,60 @@ router.get('/', async (req, res) => {
 const productPrices = {
     Classic: 46,
     Spicy: 47,
-    Roasted: 250,
+    Roasted: 300,
   };
   
   // Add a new sale
-  // Add a new sale
-  router.post('/', async (req, res) => {
-    const { productName, quantity } = req.body;
+  router.post('/pos', async (req, res) => {
+    const { sales } = req.body; // Array of products with productName and quantity
+  
+    if (!sales || !Array.isArray(sales)) {
+      return res.status(400).json({ message: 'Invalid sales data format' });
+    }
   
     try {
-      // Check if the product exists
-      const product = await Inventory.findOne({ productName });
-      if (!product) {
-        return res.status(400).json({ message: 'Product not found in inventory' });
+      const saleRecords = []; // To store new sales records
+  
+      // Log sales data
+      console.log("Sales Data Received:", sales);
+  
+      for (const sale of sales) {
+        const { productName, quantity } = sale;
+  
+        // Check if the product exists in inventory
+        const product = await Inventory.findOne({ productName });
+        if (!product) {
+          return res.status(404).json({ message: `Product ${productName} not found in inventory` });
+        }
+  
+        if (product.quantity < quantity) {
+          return res.status(400).json({ message: `Insufficient stock for ${productName}` });
+        }
+  
+        // Log the product and quantity being processed
+        console.log(`Processing product: ${productName}, Quantity: ${quantity}`);
+  
+        // Prepare sale record
+        const totalPrice = quantity * productPrices[productName];
+        saleRecords.push({ productName, quantity, totalPrice });
       }
   
-      if (quantity < 0) {
-        return res.status(400).json({ message: 'Quantity cannot be negative' });
-      }
+      // Save all sales records
+      const newSales = await Sale.insertMany(saleRecords);
   
-      // Calculate total price
-      const totalPrice = quantity * (productPrices[productName] || 0);
-      if (totalPrice === 0) {
-        return res.status(400).json({ message: 'Invalid product name' });
-      }
-  
-      // Add the sale without modifying inventory
-      const sale = new Sale({ productName, quantity, totalPrice });
-      const newSale = await sale.save();
-  
-      res.status(201).json(newSale);
+      res.status(201).json({ message: 'Sales successfully processed', sales: newSales });
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      console.error(err);
+      res.status(500).json({ message: 'Server error', error: err.message });
     }
   });
+  
+  
+    
+  
     
   // Dashboard totals calculation
-router.get('/dashboard', async (req, res) => {
+  router.get('/dashboard', async (req, res) => {
     try {
       const inventory = await Inventory.find(); // Get all inventory
       const sales = await Sale.find(); // Get all sales
@@ -69,7 +86,7 @@ router.get('/dashboard', async (req, res) => {
         const soldQuantity = salesMap[product.productName] || 0;
         return {
           productName: product.productName,
-          total: product.quantity - soldQuantity,
+          total: product.quantity - soldQuantity, // Remaining stock for dashboard
         };
       });
   
@@ -78,6 +95,7 @@ router.get('/dashboard', async (req, res) => {
       res.status(500).json({ message: err.message });
     }
   });
+  
 
 // Delete a sale
 router.delete('/:id', async (req, res) => {
