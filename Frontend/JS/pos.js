@@ -1,82 +1,121 @@
-// List of Products
+// Product Data
 const products = [
-  { name: "Classic Chicken", price: 46, qty: 0 },
-  { name: "Spicy Chicken", price: 47, qty: 0 },
-  { name: "Roasted Chicken", price: 300, qty: 0 },
+  { id: 0, name: "Classic Chicken", price: 46, qty: 0 },
+  { id: 1, name: "Spicy Chicken", price: 47, qty: 0 },
+  { id: 2, name: "Roasted Chicken", price: 300, qty: 0 },
 ];
 
-// Add Quantity to the Selected Product
+// Add Quantity
 function addQuantity() {
   const dropdown = document.getElementById("product-dropdown");
   const selectedIndex = parseInt(dropdown.value, 10);
-  
-  // Increment the quantity of the selected product
-  products[selectedIndex].qty++;
-  updateTable();
+
+  if (!isNaN(selectedIndex)) {
+    products[selectedIndex].qty++;
+    updateProductList();
+  }
 }
 
-// Remove Quantity from the Selected Product
+// Remove Quantity
 function removeQuantity() {
   const dropdown = document.getElementById("product-dropdown");
   const selectedIndex = parseInt(dropdown.value, 10);
 
-  // Decrement the quantity of the selected product, ensuring it doesn't go below zero
-  if (products[selectedIndex].qty > 0) {
+  if (!isNaN(selectedIndex) && products[selectedIndex].qty > 0) {
     products[selectedIndex].qty--;
-    updateTable();
+    updateProductList();
   }
 }
 
-// Update the Table with Product Details
-function updateTable() {
-  const tableBody = document.getElementById("product-list");
-  tableBody.innerHTML = "";
-  let total = 0;
+// Update Product List
+function updateProductList() {
+  const productList = document.getElementById("product-list");
+  productList.innerHTML = ""; // Clear existing rows
+  let totalPrice = 0;
 
-  // Generate Table Rows Dynamically
   products.forEach((product) => {
     if (product.qty > 0) {
-      const productTotal = product.qty * product.price;
-      total += productTotal;
-
-      const row = `<tr>
+      const row = document.createElement("tr");
+      row.innerHTML = `
         <td>${product.qty}</td>
         <td>${product.name}</td>
-        <td>${product.price}</td>
-        <td>${productTotal}</td>
-      </tr>`;
-      tableBody.innerHTML += row;
+        <td>₱${product.price.toFixed(2)}</td>
+        <td>₱${(product.qty * product.price).toFixed(2)}</td>
+      `;
+      productList.appendChild(row);
+      totalPrice += product.qty * product.price;
     }
   });
 
-  // Update Total Price
-  document.getElementById("total-price").innerText = total.toFixed(2);
+  document.getElementById("total-price").innerText = totalPrice.toFixed(2);
+  calculateChange(); // Update change based on the payment input
 }
 
-// Calculate the Change
+// Calculate Change
 function calculateChange() {
   const payment = parseFloat(document.getElementById("payment").value) || 0;
-  const total = parseFloat(document.getElementById("total-price").innerText);
-  const change = payment - total;
-
-  document.getElementById("change").innerText = change >= 0 ? change.toFixed(2) : "0.00";
+  const total = parseFloat(document.getElementById("total-price").innerText) || 0;
+  const change = payment >= total ? payment - total : 0;
+  document.getElementById("change").innerText = change.toFixed(2);
 }
 
-// Process Payment
-function pay() {
-  const payment = parseFloat(document.getElementById("payment").value) || 0;
+// Pay Function
+async function pay() {
   const total = parseFloat(document.getElementById("total-price").innerText);
+  const payment = parseFloat(document.getElementById("payment").value);
 
   if (payment >= total) {
-    alert("Payment Successful!");
-    products.forEach((product) => (product.qty = 0));
-    document.getElementById("payment").value = "";
-    updateTable();
-    calculateChange();
+    const salesData = products
+      .filter((product) => product.qty > 0)
+      .map((product) => ({
+        productName: mapProductNameToInventory(product.name),
+        quantity: product.qty,
+        total: product.qty * product.price,
+      }));
+
+    console.log("Sales Data to Send:", salesData); // Debugging: Log sales data
+
+    try {
+      const response = await fetch("http://localhost:4000/api/sales/pos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sales: salesData }),
+      });
+
+      if (response.ok) {
+        alert("Payment Successful! Sales recorded.");
+        // Reset the product quantities after sale is processed
+        products.forEach((product) => (product.qty = 0));
+        document.getElementById("payment").value = "";
+        updateProductList();
+        document.getElementById("change").innerText = "0.00";
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error("Error during payment:", error);
+      alert("Failed to process payment. Please try again.");
+    }
   } else {
     alert("Insufficient Payment!");
   }
 }
 
-// Initialize the Table on Page Load
-updateTable();
+// Map the product names sent from POS to the ones in the inventory
+function mapProductNameToInventory(posName) {
+  const nameMap = {
+    "Classic Chicken": "Classic",
+    "Spicy Chicken": "Spicy",
+    "Roasted Chicken": "Roasted"
+  };
+  return nameMap[posName] || posName; // Return the original name if no mapping is found
+}
+
+// Initialize
+function init() {
+  updateProductList();
+}
+
+// Run Initialization
+document.addEventListener("DOMContentLoaded", init);

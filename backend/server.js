@@ -7,6 +7,7 @@ const cors = require('cors');
 const loginRoutes = require('./routes/login');
 const inventoryRouter = require('./routes/inventory');
 const salesRouter = require('./routes/sales');
+const posRouter = require('./routes/pos');
 
 const app = express();
 
@@ -30,6 +31,10 @@ app.get('/', (req, res) => {
 
 // Use sales routes
 app.use('/api/sales', salesRouter);
+
+// Use POS routes
+app.use('/api/pos', posRouter);
+
 
 // Use inventory routes
 app.use('/api/inventory', inventoryRouter);
